@@ -14,21 +14,110 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model User {
-  id         Int      @id @default(autoincrement())
-  email      String   @unique
-  role       String   @default("DOCTOR")
-  password   String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+model Staff {
+  id                     String       @id @default(uuid()) @db.Uuid
+  name                   String
+  email                  String
+  password               String
+  healthcenter_id        String       @db.Uuid
+  healthcenter           Healthcenter @relation(fields: [healthcenter_id], references: [id])
+  role_id                String       @db.Uuid
+  role                   Roles        @relation(fields: [role_id], references: [id])
+  created_at             DateTime     @default(now()) @db.Timestamptz(6)
+  updated_at             DateTime     @default(now()) @updatedAt @db.Timestamptz(6)
+  is_deleted             Boolean      @default(false)
+  requests               Request[]    @relation("doctor")
+  approvals              Request[]    @relation("approvedBy")
+  anesthesiologistOps    Operation[]  @relation("anesthesiologist")
+  nurseInstrumentistaOps Operation[]  @relation("nurseInstrumentista")
 }
 
-model Patient {
-  id         Int      @id @default(autoincrement())
-  name       String
-  email      String   @unique
-  phone      String
-  dni        Int      @unique
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+model Roles {
+  id    String  @id @default(uuid()) @db.Uuid
+  name  String
+  staff Staff[]
+}
+
+model Healthcenter {
+  id                String           @id @default(uuid()) @db.Uuid
+  healthcenter_name String
+  admin_name        String
+  contact_number    Int
+  contact_email     String
+  staff             Staff[]
+  operationsroom    Operationsroom[]
+  equipment         Equipment[]
+  created_at        DateTime         @default(now()) @db.Timestamptz(6)
+  updated_at        DateTime         @default(now()) @updatedAt @db.Timestamptz(6)
+  is_deleted        Boolean          @default(false)
+}
+
+model Operationsroom {
+  id              String       @id @default(uuid()) @db.Uuid
+  healthcenter_id String       @db.Uuid
+  healthcenter    Healthcenter @relation(fields: [healthcenter_id], references: [id])
+  room_number     Int
+  created_at      DateTime     @default(now()) @db.Timestamptz(6)
+  updated_at      DateTime     @default(now()) @updatedAt @db.Timestamptz(6)
+  is_deleted      Boolean      @default(false)
+  requests        Request[]
+}
+
+model Equipment {
+  id              String               @id @default(uuid()) @db.Uuid
+  healthcenter_id String               @db.Uuid
+  healthcenter    Healthcenter         @relation(fields: [healthcenter_id], references: [id])
+  equipment_name  String
+  created_at      DateTime             @default(now()) @db.Timestamptz(6)
+  updated_at      DateTime             @default(now()) @updatedAt @db.Timestamptz(6)
+  is_deleted      Boolean              @default(false)
+  requests        RequestedEquipment[]
+}
+
+model Status {
+  id           String    @id @default(uuid()) @db.Uuid
+  status_name  String
+  forOperation Boolean
+  requests     Request[]
+}
+
+model Operation {
+  id                     String   @id @default(uuid()) @db.Uuid
+  request_id             String   @db.Uuid
+  anesthesiologist_id    String   @db.Uuid
+  anesthesiologist       Staff    @relation("anesthesiologist", fields: [anesthesiologist_id], references: [id])
+  nurseInstrumentista_id String   @db.Uuid
+  nurseInstrumentista    Staff    @relation("nurseInstrumentista", fields: [nurseInstrumentista_id], references: [id])
+  created_at             DateTime @default(now()) @db.Timestamptz(6)
+  updated_at             DateTime @default(now()) @updatedAt @db.Timestamptz(6)
+  is_deleted             Boolean  @default(false)
+}
+
+model Request {
+  id                 String               @id @default(uuid()) @db.Uuid
+  approved_by        String?              @db.Uuid
+  approvedBy         Staff?               @relation("approvedBy", fields: [approved_by], references: [id])
+  doctor_id          String               @db.Uuid
+  doctor             Staff                @relation("doctor", fields: [doctor_id], references: [id])
+  initTime           DateTime             @db.Date
+  endTime            DateTime             @db.Date
+  operations_room_id String               @db.Uuid
+  operationsroom     Operationsroom       @relation(fields: [operations_room_id], references: [id])
+  equipment          String               @db.Uuid
+  description        String
+  status_id          String               @db.Uuid
+  status             Status               @relation(fields: [status_id], references: [id])
+  createdAt          DateTime             @default(now()) @db.Date
+  updatedAt          DateTime             @updatedAt @db.Date
+  is_deleted         Boolean              @default(false)
+  requestedEquipment RequestedEquipment[]
+}
+
+model RequestedEquipment {
+  request_id   String    @default(uuid()) @db.Uuid
+  request      Request   @relation(fields: [request_id], references: [id])
+  equipment_id String    @default(uuid()) @db.Uuid
+  equipment    Equipment @relation(fields: [equipment_id], references: [id])
+
+  @@id([request_id, equipment_id])
 }
