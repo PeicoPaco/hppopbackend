@@ -1,0 +1,12 @@
+[
+  {
+    "id": "98b7d1b2-1f0c-443b-98a1-4c8c26a12973",
+    "healthcenter_id": "90ca2fcb-de37-4822-8352-309f06dd19fc",
+    "room_number": 1
+  },
+  {
+    "id": "7829d855-4e05-42cb-9853-5b03851a3259",
+    "healthcenter_id": "90ca2fcb-de37-4822-8352-309f06dd19fc",
+    "room_number": 2
+  }
+]

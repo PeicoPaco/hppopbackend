@@ -1,0 +1,18 @@
+[
+  {
+    "id": "3d75cbb7-18e7-41b6-94a1-9c40404b8888",
+    "status_name": "Pending Approval"
+  },
+  {
+    "id": "f0bf4c58-2338-4a55-b4cc-6a7e6a2a128a",
+    "status_name": "Upcoming"
+  },
+  {
+    "id": "42a30ad8-08f0-4f2f-8b50-cb07ed7eaf91",
+    "status_name": "Done"
+  },
+  {
+    "id": "ab9f88a4-789d-4d7e-9d6e-7f3541048a2c",
+    "status_name": "Cancelled"
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "id": "dc480336-d818-4110-ad58-16bb22146777",
+    "healthcenter_id": "90ca2fcb-de37-4822-8352-309f06dd19fc",
+    "equipment_name": "Arco en C"
+  },
+  {
+    "id": "9aae8647-5e7d-4c9e-bedf-d1ba7ecf15b1",
+    "healthcenter_id": "90ca2fcb-de37-4822-8352-309f06dd19fc",
+    "equipment_name": "Maquina de Ultrasonido"
+  }
+]

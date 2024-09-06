@@ -1,0 +1,54 @@
+[
+  {
+    "id": "904fd085-6384-47d5-b5c9-3bcd2be536f7",
+    "doctor_id": "d41f1e29-e7a6-4ac6-ae6a-1d05f35b503c",
+    "approved_by": "114441bc-46b1-4dbf-a5d4-51846393368e",
+    "initTime": "2024-09-28T10:30:00.352Z",
+    "endTime": "2024-09-28T13:30:00.352Z",
+    "operations_room_id": "98b7d1b2-1f0c-443b-98a1-4c8c26a12973",
+    "status_id": "3d75cbb7-18e7-41b6-94a1-9c40404b8888",
+    "description": "Rotura de Cadera",
+    "equipment": "9aae8647-5e7d-4c9e-bedf-d1ba7ecf15b1"
+  },
+  {
+    "id": "c452ba09-4786-435e-95a7-d7e98cca4ad0",
+    "doctor_id": "ab717711-3cf7-454d-bc67-97dca288d662",
+    "approved_by": "a20d9a1b-b915-4f85-8d0a-cfd1268bb9b7",
+    "initTime": "2024-10-06T10:30:00.352Z",
+    "endTime": "2024-10-06T13:30:00.352Z",
+    "operations_room_id": "7829d855-4e05-42cb-9853-5b03851a3259",
+    "status_id": "3d75cbb7-18e7-41b6-94a1-9c40404b8888",
+    "description": "Cesarea",
+    "equipment": "dc480336-d818-4110-ad58-16bb22146777"
+  },
+  {
+    "id": "44da64f3-b664-40d7-a685-72e39f73ae1e",
+    "doctor_id": "0290cae3-a9ea-4fb0-9de4-075e8732b66e",
+    "approved_by": "8aaee6ac-31f5-4174-ae12-7a7182110483",
+    "initTime": "2024-10-06T16:30:00.352Z",
+    "endTime": "2024-10-06T18:30:00.352Z",
+    "operations_room_id": "98b7d1b2-1f0c-443b-98a1-4c8c26a12973",
+    "status_id": "f0bf4c58-2338-4a55-b4cc-6a7e6a2a128a",
+    "description": "Operacion de Emergencia"
+  },
+  {
+    "id": "27010c26-1a8e-44ed-9454-870e22f043ca",
+    "doctor_id": "fb01575c-a651-4be3-8831-36266714a3d6",
+    "approved_by": "114441bc-46b1-4dbf-a5d4-51846393368e",
+    "initTime": "2024-10-06T10:30:00.352Z",
+    "endTime": "2024-10-06T13:30:00.352Z",
+    "operations_room_id": "7829d855-4e05-42cb-9853-5b03851a3259",
+    "status_id": "f0bf4c58-2338-4a55-b4cc-6a7e6a2a128a",
+    "description": "Operacion de Corazon"
+  },
+  {
+    "id": "cfaacaec-68d4-44f6-a9ac-0e0ca4f2e375",
+    "doctor_id": "d41f1e29-e7a6-4ac6-ae6a-1d05f35b503c",
+    "approved_by": "a20d9a1b-b915-4f85-8d0a-cfd1268bb9b7",
+    "initTime": "2024-10-06T10:30:00.352Z",
+    "endTime": "2024-10-06T13:30:00.352Z",
+    "operations_room_id": "98b7d1b2-1f0c-443b-98a1-4c8c26a12973",
+    "status_id": "ab9f88a4-789d-4d7e-9d6e-7f3541048a2c",
+    "description": "Quirofano"
+  }
+]

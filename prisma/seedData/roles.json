@@ -1,0 +1,22 @@
+[
+    {
+        "id": "ae65862b-586d-4bf6-9065-93265a0284aa",
+        "name": "superadmin"
+    },
+    {
+        "id": "8bfc2734-d210-477d-b9a4-b54c495305e7",
+        "name": "admin"
+    },
+    {
+        "id": "11b51e90-dae2-4a6c-aeae-5c03eca95ff4",
+        "name": "doctor"
+    },
+    {
+        "id": "3c306ec6-bff7-41bf-853c-502ea2f94301",
+        "name": "instrumentista"
+    },
+    {
+        "id": "c0796073-cdcf-4498-b160-30662243417d",
+        "name": "anestesiologo"
+    }
+]

@@ -17,8 +17,8 @@ datasource db {
 model Staff {
   id                     String       @id @default(uuid()) @db.Uuid
   name                   String
-  email                  String
-  password               String
+  email                  String?
+  password               String?
   healthcenter_id        String       @db.Uuid
   healthcenter           Healthcenter @relation(fields: [healthcenter_id], references: [id])
   role_id                String       @db.Uuid
@@ -75,10 +75,9 @@ model Equipment {
 }
 
 model Status {
-  id           String    @id @default(uuid()) @db.Uuid
-  status_name  String
-  forOperation Boolean
-  requests     Request[]
+  id          String    @id @default(uuid()) @db.Uuid
+  status_name String
+  requests    Request[]
 }
 
 model Operation {
@@ -103,7 +102,7 @@ model Request {
   endTime            DateTime             @db.Date
   operations_room_id String               @db.Uuid
   operationsroom     Operationsroom       @relation(fields: [operations_room_id], references: [id])
-  equipment          String               @db.Uuid
+  equipment          String?              @db.Uuid
   description        String
   status_id          String               @db.Uuid
   status             Status               @relation(fields: [status_id], references: [id])

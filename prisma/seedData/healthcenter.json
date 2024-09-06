@@ -1,0 +1,10 @@
+[
+  {
+    "id": "90ca2fcb-de37-4822-8352-309f06dd19fc",
+    "healthcenter_name": "Hospital Privado del Peru",
+    "admin_name": "Pedro Reategui",
+    "contact_number": 123456789,
+    "contact_email": "admin@hpp.com",
+    "is_deleted": false
+  }
+]
