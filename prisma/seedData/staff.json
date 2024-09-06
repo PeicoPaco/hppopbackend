@@ -1,0 +1,70 @@
+[
+  {
+    "id": "114441bc-46b1-4dbf-a5d4-51846393368e",
+    "name": "Liz Hidalgo",
+    "email": "superadmin@hpp.com",
+    "role_id": "ae65862b-586d-4bf6-9065-93265a0284aa",
+    "healthcenter_id": "90ca2fcb-de37-4822-8352-309f06dd19fc",
+    "password": "$2b$12$c1zyOVIrlO4I/h8z09k5dOuMYWp0zCDlIpr9W8aN8iqnlNT6COyrK"
+  },
+  {
+    "id": "a20d9a1b-b915-4f85-8d0a-cfd1268bb9b7",
+    "name": "Admin One",
+    "email": "admin1@hpp.com",
+    "role_id": "8bfc2734-d210-477d-b9a4-b54c495305e7",
+    "healthcenter_id": "90ca2fcb-de37-4822-8352-309f06dd19fc",
+    "password": "$2b$12$c1zyOVIrlO4I/h8z09k5dOuMYWp0zCDlIpr9W8aN8iqnlNT6COyrK"
+  },
+  {
+    "id": "8aaee6ac-31f5-4174-ae12-7a7182110483",
+    "name": "Admin Two",
+    "email": "admin2@hpp.com",
+    "role_id": "8bfc2734-d210-477d-b9a4-b54c495305e7",
+    "healthcenter_id": "90ca2fcb-de37-4822-8352-309f06dd19fc",
+    "password": "$2b$12$c1zyOVIrlO4I/h8z09k5dOuMYWp0zCDlIpr9W8aN8iqnlNT6COyrK"
+  },
+  {
+    "id": "d41f1e29-e7a6-4ac6-ae6a-1d05f35b503c",
+    "name": "Doctor One",
+    "email": "pedro.grillo@hpp.com",
+    "role_id": "11b51e90-dae2-4a6c-aeae-5c03eca95ff4",
+    "healthcenter_id": "90ca2fcb-de37-4822-8352-309f06dd19fc",
+    "password": "$2b$12$c1zyOVIrlO4I/h8z09k5dOuMYWp0zCDlIpr9W8aN8iqnlNT6COyrK"
+  },
+  {
+    "id": "ab717711-3cf7-454d-bc67-97dca288d662",
+    "name": "Doctor Two",
+    "email": "doctor.albines@hpp.com",
+    "role_id": "11b51e90-dae2-4a6c-aeae-5c03eca95ff4",
+    "healthcenter_id": "90ca2fcb-de37-4822-8352-309f06dd19fc",
+    "password": "$2b$12$c1zyOVIrlO4I/h8z09k5dOuMYWp0zCDlIpr9W8aN8iqnlNT6COyrK"
+  },
+  {
+    "id": "0290cae3-a9ea-4fb0-9de4-075e8732b66e",
+    "name": "Doctor Three",
+    "email": "doctor.perez@hpp.com",
+    "role_id": "11b51e90-dae2-4a6c-aeae-5c03eca95ff4",
+    "healthcenter_id": "90ca2fcb-de37-4822-8352-309f06dd19fc",
+    "password": "$2b$12$c1zyOVIrlO4I/h8z09k5dOuMYWp0zCDlIpr9W8aN8iqnlNT6COyrK"
+  },
+  {
+    "id": "fb01575c-a651-4be3-8831-36266714a3d6",
+    "name": "Doctor Four",
+    "email": "doctor.vargas@hpp.com",
+    "role_id": "11b51e90-dae2-4a6c-aeae-5c03eca95ff4",
+    "healthcenter_id": "90ca2fcb-de37-4822-8352-309f06dd19fc",
+    "password": "$2b$12$c1zyOVIrlO4I/h8z09k5dOuMYWp0zCDlIpr9W8aN8iqnlNT6COyrK"
+  },
+  {
+    "id": "80a5c8dc-b627-4307-bbb2-9aba0aa1e47f",
+    "name": "Anesthesiologist",
+    "role_id": "c0796073-cdcf-4498-b160-30662243417d",
+    "healthcenter_id": "90ca2fcb-de37-4822-8352-309f06dd19fc"
+  },
+  {
+    "id": "b6dd1907-ad20-48f0-9ca8-7653deb5321c",
+    "name": "Instrumentista",
+    "role_id": "3c306ec6-bff7-41bf-853c-502ea2f94301",
+    "healthcenter_id": "90ca2fcb-de37-4822-8352-309f06dd19fc"
+  }
+]
