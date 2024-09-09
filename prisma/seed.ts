@@ -12,13 +12,14 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
+  await prisma.request.deleteMany();
+  await prisma.status.deleteMany();
+  await prisma.operation.deleteMany();
   await prisma.staff.deleteMany();
   await prisma.roles.deleteMany();
   await prisma.equipment.deleteMany();
-  await prisma.healthcenter.deleteMany();
   await prisma.operationsroom.deleteMany();
-  await prisma.request.deleteMany();
-  await prisma.operation.deleteMany();
+  await prisma.healthcenter.deleteMany();
 
   for (const role of roles) {
     await prisma.roles.create({
@@ -102,7 +103,11 @@ async function main() {
         operationsroom: {
           connect: { id: request.operations_room_id },
         },
-        equipment: request.equipment,
+        ...(request.equipment && {
+          equipment: {
+            connect: [{ id: request.equipment }],
+          },
+        }),
       },
     });
   }
