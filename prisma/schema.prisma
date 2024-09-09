@@ -17,8 +17,7 @@ datasource db {
 model Staff {
   id                     String       @id @default(uuid()) @db.Uuid
   name                   String
-  email                  String?
-  password               String?
+  user                   User?
   healthcenter_id        String       @db.Uuid
   healthcenter           Healthcenter @relation(fields: [healthcenter_id], references: [id])
   role_id                String       @db.Uuid
@@ -30,6 +29,14 @@ model Staff {
   approvals              Request[]    @relation("approvedBy")
   anesthesiologistOps    Operation[]  @relation("anesthesiologist")
   nurseInstrumentistaOps Operation[]  @relation("nurseInstrumentista")
+}
+
+model User {
+  id       String @id @default(uuid()) @db.Uuid
+  email    String @unique
+  password String
+  staff_id String @unique @db.Uuid
+  staff    Staff  @relation(fields: [staff_id], references: [id])
 }
 
 model Roles {
