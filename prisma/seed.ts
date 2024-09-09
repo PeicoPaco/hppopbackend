@@ -7,6 +7,7 @@ const requests = require('./seedData/requests.json');
 const roles = require('./seedData/roles.json');
 const staffs = require('./seedData/staff.json');
 const status = require('./seedData/status.json');
+const users = require('./seedData/users.json');
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -66,10 +67,18 @@ async function main() {
       data: {
         id: staff.id,
         name: staff.name,
-        email: staff.email,
-        password: staff.password,
         role_id: staff.role_id,
         healthcenter_id: staff.healthcenter_id,
+      },
+    });
+  }
+
+  for (const user of users) {
+    await prisma.user.create({
+      data: {
+        email: user.email,
+        password: user.password,
+        staff_id: user.staff_id,
       },
     });
   }

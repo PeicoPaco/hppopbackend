@@ -1,0 +1,37 @@
+[
+  {
+    "email": "superadmin@hpp.com",
+    "password": "$2b$12$c1zyOVIrlO4I/h8z09k5dOuMYWp0zCDlIpr9W8aN8iqnlNT6COyrK",
+    "staff_id": "114441bc-46b1-4dbf-a5d4-51846393368e"
+  },
+  {
+    "email": "admin1@hpp.com",
+    "password": "$2b$12$c1zyOVIrlO4I/h8z09k5dOuMYWp0zCDlIpr9W8aN8iqnlNT6COyrK",
+    "staff_id": "a20d9a1b-b915-4f85-8d0a-cfd1268bb9b7"
+  },
+  {
+    "email": "admin2@hpp.com",
+    "password": "$2b$12$c1zyOVIrlO4I/h8z09k5dOuMYWp0zCDlIpr9W8aN8iqnlNT6COyrK",
+    "staff_id": "8aaee6ac-31f5-4174-ae12-7a7182110483"
+  },
+  {
+    "email": "pedro.grillo@hpp.com",
+    "password": "$2b$12$c1zyOVIrlO4I/h8z09k5dOuMYWp0zCDlIpr9W8aN8iqnlNT6COyrK",
+    "staff_id": "d41f1e29-e7a6-4ac6-ae6a-1d05f35b503c"
+  },
+  {
+    "email": "doctor.albines@hpp.com",
+    "password": "$2b$12$c1zyOVIrlO4I/h8z09k5dOuMYWp0zCDlIpr9W8aN8iqnlNT6COyrK",
+    "staff_id": "ab717711-3cf7-454d-bc67-97dca288d662"
+  },
+  {
+    "email": "doctor.perez@hpp.com",
+    "password": "$2b$12$c1zyOVIrlO4I/h8z09k5dOuMYWp0zCDlIpr9W8aN8iqnlNT6COyrK",
+    "staff_id": "0290cae3-a9ea-4fb0-9de4-075e8732b66e"
+  },
+  {
+    "email": "doctor.vargas@hpp.com",
+    "password": "$2b$12$c1zyOVIrlO4I/h8z09k5dOuMYWp0zCDlIpr9W8aN8iqnlNT6COyrK",
+    "staff_id": "fb01575c-a651-4be3-8831-36266714a3d6"
+  }
+]
