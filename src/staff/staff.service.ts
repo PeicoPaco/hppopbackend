@@ -31,19 +31,11 @@ export class StaffService {
     });
   }
 
-
   softDelete(id: string) {
     return this.prisma.staff.update({
       where: { id },
       data: { is_deleted: true},
     });
   }
-
-  //Find one Email method for logging purposes
-  // finOneByEmail(email: string) {
-  //   return this.prisma.staff.findUnique({
-  //     where: { email },
-  //   })
-  // }
 
 }
