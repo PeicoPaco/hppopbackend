@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -26,10 +26,16 @@ export class UserService {
     return this.prisma.user.findMany();
   }
 
-  findOne(id: string) {
-    return this.prisma.user.findUnique({
-      where: { id }
-    });
+  async findOne(id: string) {
+    try{
+      const user = await this.prisma.user.findUniqueOrThrow({
+        where: { id },
+      });
+      return user;
+    } 
+    catch(error) {
+      throw new NotFoundException('User not found');
+    }  
   }
 
   update(id: string, data: UpdateUserDto) {
@@ -45,12 +51,30 @@ export class UserService {
     });
   }
 
-  findOneByEmail(email: string) {
-    return this.prisma.user.findUnique({
-      where: { email },
-      include: {
-        staff: true,
-      },
-    });
+  async findOneByEmail(email: string) {
+    try {
+      const user = await this.prisma.user.findUniqueOrThrow({
+        where: { email },
+        include: {
+          staff: true,
+        }
+      });
+      return user;
+    } catch (error) {
+      throw new NotFoundException('User not found');
+    }
   }
+
+  //method to get the staff and his id durign log in process
+  async findStaffById(id: string) {
+    try {
+      const staff = await this.prisma.staff.findUniqueOrThrow({
+        where: { id },
+      });
+      return staff;
+    } catch (error) {
+      throw new NotFoundException('Staff id not found');
+    }
+  }
+
 }

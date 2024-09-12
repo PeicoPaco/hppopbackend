@@ -8,22 +8,24 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcryptjs from 'bcryptjs';
 import { LogInDto } from './dto/login.dto';
 import { UserService } from 'src/user/user.service';
+import { StaffService } from 'src/staff/staff.service';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly usersService: UserService,
+    private readonly userService: UserService,
+    private readonly staffService: StaffService,
     private readonly jwtService: JwtService,
   ) {}
 
   async register({ email, password, staffId }: RegisterDto) {
-    const user = await this.usersService.findOneByEmail(email); 
+    const user = await this.userService.findOneByEmail(email); 
 
     if (user) {
       throw new BadRequestException('User already exists');
     }
 
-    await this.usersService.create({
+    await this.userService.create({
       email,
       password: await bcryptjs.hash(password, 10),
       staffId,
@@ -35,7 +37,7 @@ export class AuthService {
   }
 
   async login({ email, password }: LogInDto) {
-    const user = await this.usersService.findOneByEmail(email);
+    const user = await this.userService.findOneByEmail(email);
     if (!user) {
       throw new UnauthorizedException('email is wrong');
     }
@@ -45,16 +47,26 @@ export class AuthService {
       throw new UnauthorizedException('password is wrong');
     }
 
-    const payload = { email: user.email };
+    //Get staff from user id
+    const staff = await this.userService.findStaffById(user.staff_id);
+    if(!staff) {
+      throw new UnauthorizedException('No staff associated with user');
+    }
+
+    //Get role from staff id
+    const role = await this.staffService.findStaffRoleById(staff.role_id);
+
+    const payload = { email: user.email, role: role.name };
     const token = await this.jwtService.signAsync(payload);
 
     return {
       token,
       email,
+      role: role.name,
     };
   }
 
   async profile({ email }: { email: string }) {
-    return await this.usersService.findOneByEmail(email);
+    return await this.userService.findOneByEmail(email);
   }
 }
