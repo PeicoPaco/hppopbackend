@@ -1,4 +1,14 @@
+import { isNotEmpty, IsNotEmpty, IsUUID } from "class-validator";
+
+
 export class CreateUserDto {
-  email: string;
-  password: string;
+    @IsNotEmpty()
+    email: string;
+
+    @IsNotEmpty()
+    password: string;
+
+    @IsUUID()
+    staffId: string;
+
 }
