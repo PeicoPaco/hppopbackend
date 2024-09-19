@@ -26,16 +26,11 @@ export class UserService {
     return this.prisma.user.findMany();
   }
 
-  async findOne(id: string) {
-    try{
-      const user = await this.prisma.user.findUniqueOrThrow({
-        where: { id },
-      });
-      return user;
-    } 
-    catch(error) {
-      throw new NotFoundException('User not found');
-    }  
+  findOne(id: string) {
+    const user = this.prisma.user.findUnique({
+      where: { id },
+    });
+    return user; 
   }
 
   update(id: string, data: UpdateUserDto) {
@@ -51,30 +46,19 @@ export class UserService {
     });
   }
 
-  async findOneByEmail(email: string) {
-    try {
-      const user = await this.prisma.user.findUniqueOrThrow({
-        where: { email },
-        include: {
-          staff: true,
-        }
-      });
-      return user;
-    } catch (error) {
-      throw new NotFoundException('User not found');
-    }
+  findOneByEmail(email: string) {
+    const user = this.prisma.user.findUnique({
+      where: { email }
+    });
+    return user;
   }
 
   //method to get the staff and his id durign log in process
-  async findStaffById(id: string) {
-    try {
-      const staff = await this.prisma.staff.findUniqueOrThrow({
-        where: { id },
-      });
-      return staff;
-    } catch (error) {
-      throw new NotFoundException('Staff id not found');
-    }
+  findStaffById(id: string) {
+    const staff = this.prisma.staff.findUnique({
+      where: { id },
+    });
+    return staff;
   }
 
 }
