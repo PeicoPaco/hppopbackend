@@ -6,7 +6,10 @@ export function IsNotBlank(validationOptions?: ValidationOptions) {
       name: 'isNotBlank',
       target: object.constructor,
       propertyName: propertyName,
-      options: validationOptions,
+      options: {
+        message: "This field can't be an empty string",
+        ...validationOptions,
+      },
       validator: {
         validate(value: any) {
           if(typeof value !== 'string') return false;

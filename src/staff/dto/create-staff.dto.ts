@@ -2,7 +2,7 @@ import { IsNotEmpty, IsUUID, IsString } from 'class-validator';
 import { IsNotBlank } from 'src/decorators/is-not-blank.decorator';
 
 export class CreateStaffDto {
-    @IsNotBlank({message: "name can't be an empty string"})
+    @IsNotBlank()
     @IsString()
     @IsNotEmpty()
     name: string;
