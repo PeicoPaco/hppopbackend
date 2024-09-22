@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, UseGuards, ValidationPipe, ParseUUIDPipe } from '@nestjs/common';
 import { StaffService } from './staff.service';
 import { CreateStaffDto } from './dto/create-staff.dto';
 import { UpdateStaffDto } from './dto/update-staff.dto';
@@ -15,7 +15,7 @@ export class StaffController {
 
   @Roles(Role.SUPERADMIN)
   @Post()
-  create(@Body() createStaffDto: CreateStaffDto) {
+  create(@Body(ValidationPipe) createStaffDto: CreateStaffDto) {
     return this.staffService.create(createStaffDto);
   }
 
@@ -27,13 +27,13 @@ export class StaffController {
 
   @Roles(Role.SUPERADMIN, Role.ADMIN)
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.staffService.findOne(id);
   }
 
   @Roles(Role.SUPERADMIN)
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateStaffDto: UpdateStaffDto) {
+  update(@Param('id', ParseUUIDPipe) id: string, @Body(ValidationPipe) updateStaffDto: UpdateStaffDto) {
     return this.staffService.update(id, updateStaffDto);
   }
 
