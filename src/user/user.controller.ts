@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, NotFoundException } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -10,7 +10,7 @@ import { Role } from 'src/auth/enums/rol.enum';
 @Controller('user')
 @UseGuards(AuthGuard, RolesGuard)
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Roles(Role.SUPERADMIN)
   @Post()
@@ -27,13 +27,21 @@ export class UserController {
   @Roles(Role.SUPERADMIN, Role.ADMIN)
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.userService.findOne(id);
+    const user = this.userService.findOne(id);
+    if (!user) {
+      throw new NotFoundException("User not found");
+    }
+    return user;
   }
 
   @Roles(Role.SUPERADMIN, Role.ADMIN)
   @Get('findbyemail/:email')
   findOneByEmail(@Param('email') email: string) {
-    return this.userService.findOneByEmail(email);
+    const user = this.userService.findOneByEmail(email);
+    if (!user) {
+      throw new NotFoundException("User not found");
+    }
+    return user;
   }
 
   @Roles(Role.SUPERADMIN)
