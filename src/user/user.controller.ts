@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, NotFoundException, ValidationPipe, ParseUUIDPipe } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -14,7 +14,7 @@ export class UserController {
 
   @Roles(Role.SUPERADMIN)
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
+  create(@Body(ValidationPipe) createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
   }
 
@@ -26,33 +26,25 @@ export class UserController {
 
   @Roles(Role.SUPERADMIN, Role.ADMIN)
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    const user = this.userService.findOne(id);
-    if (!user) {
-      throw new NotFoundException("User not found");
-    }
-    return user;
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
+    return this.userService.findOne(id);
   }
 
   @Roles(Role.SUPERADMIN, Role.ADMIN)
   @Get('findbyemail/:email')
   findOneByEmail(@Param('email') email: string) {
-    const user = this.userService.findOneByEmail(email);
-    if (!user) {
-      throw new NotFoundException("User not found");
-    }
-    return user;
+    return this.userService.findOneByEmail(email);
   }
 
   @Roles(Role.SUPERADMIN)
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  update(@Param('id', ParseUUIDPipe) id: string, @Body(ValidationPipe) updateUserDto: UpdateUserDto) {
     return this.userService.update(id, updateUserDto);
   }
 
   @Roles(Role.SUPERADMIN)
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.userService.remove(id);
   }
 }
