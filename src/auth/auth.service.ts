@@ -55,14 +55,19 @@ export class AuthService {
 
     //Get role from staff id
     const role = await this.staffService.findStaffRoleById(staff.role_id);
+    const healthcareId = staff.healthcenter_id;
+    const name = staff.name;
 
     const payload = { email: user.email, role: role.name };
     const token = await this.jwtService.signAsync(payload);
+
 
     return {
       token,
       email,
       role: role.name,
+      name,
+      healthcareId,
     };
   }
 
