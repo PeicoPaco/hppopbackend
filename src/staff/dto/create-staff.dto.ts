@@ -1,6 +1,9 @@
-import { IsNotEmpty, IsUUID } from 'class-validator';
+import { IsNotEmpty, IsUUID, IsString } from 'class-validator';
+import { IsNotBlank } from 'src/decorators/is-not-blank.decorator';
 
 export class CreateStaffDto {
+    @IsNotBlank()
+    @IsString()
     @IsNotEmpty()
     name: string;
 
