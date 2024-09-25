@@ -88,9 +88,10 @@ export class UserService {
       where: { email },
     });
 
-    if (!user) {
-      throw new NotFoundException('User not found')
-    }
+    //Removed validation to not mess with login in auth.service
+    // if (!user) {
+    //   throw new NotFoundException('User not found')
+    // }
 
     return user;
   }

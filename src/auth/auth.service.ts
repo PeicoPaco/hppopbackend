@@ -1,5 +1,4 @@
 import {
-  BadRequestException,
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
@@ -16,11 +15,9 @@ export class AuthService {
     private readonly userService: UserService,
     private readonly staffService: StaffService,
     private readonly jwtService: JwtService,
-  ) {}
+  ) { }
 
   async register({ email, password, staffId }: RegisterDto) {
-    
-
     await this.userService.create({
       email,
       password: await bcryptjs.hash(password, 10),
@@ -45,7 +42,7 @@ export class AuthService {
 
     //Get staff from user id
     const staff = await this.userService.findStaffById(user.staff_id);
-    if(!staff) {
+    if (!staff) {
       throw new UnauthorizedException('No staff associated with user');
     }
 
