@@ -29,14 +29,31 @@ export class StaffService {
     }
   }
 
-  update(id: string, data: UpdateStaffDto) {
+  async update(id: string, data: UpdateStaffDto) {
+    const staffToUpdate = await this.prisma.staff.findUnique({
+      where: { id }
+    });
+
+    if(!staffToUpdate) {
+      throw new NotFoundException('Staff not found');
+    }
+
     return this.prisma.staff.update({
       where: { id }, 
       data,
     });
+
   }
 
-  softDelete(id: string) {
+  async softDelete(id: string) {
+    const staffToDelete = await this.prisma.staff.findUnique({
+      where : { id },
+    });
+
+    if(!staffToDelete) {
+      throw new NotFoundException('Staff not found');
+    }
+
     return this.prisma.staff.update({
       where: { id },
       data: { is_deleted: true},
