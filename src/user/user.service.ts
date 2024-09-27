@@ -87,12 +87,6 @@ export class UserService {
     const user = await this.prisma.user.findUnique({
       where: { email },
     });
-
-    //Removed validation to not mess with login in auth.service
-    // if (!user) {
-    //   throw new NotFoundException('User not found')
-    // }
-
     return user;
   }
 
