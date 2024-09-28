@@ -7,7 +7,11 @@ export class EquipmentService {
   constructor(private prisma:PrismaService) {}
   
   findAll() {
-    return this.prisma.equipment.findMany();
+    return this.prisma.equipment.findMany({
+      where: {
+        is_deleted: false,
+      },
+    });
   }
 
 }
