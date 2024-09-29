@@ -6,9 +6,10 @@ import { StaffModule } from './staff/staff.module';
 import { RolesModule } from './roles/roles.module';
 import { OperationsRoomModule } from './operations-room/operations-room.module';
 import { EquipmentModule } from './equipment/equipment.module';
+import { RequestModule } from './request/request.module';
 
 @Module({
-  imports: [AuthModule, UserModule, StaffModule, RolesModule, OperationsRoomModule, EquipmentModule],
+  imports: [AuthModule, UserModule, StaffModule, RolesModule, OperationsRoomModule, EquipmentModule, RequestModule],
   controllers: [],
   providers: [PrismaService],
 })
