@@ -15,7 +15,11 @@ export class StaffService {
   }
 
   findAll() {
-    return this.prisma.staff.findMany();
+    return this.prisma.staff.findMany({
+      where: {
+        is_deleted: false,
+      },
+    });
   }
 
   async findOne(id: string) {
