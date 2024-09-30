@@ -77,7 +77,7 @@ export class RequestService {
       throw new NotFoundException('request not found')
     };
 
-    return this.prisma.staff.update({
+    return this.prisma.request.update({
       where: { id },
       data: { is_deleted: true },
     });
