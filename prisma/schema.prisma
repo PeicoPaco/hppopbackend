@@ -105,15 +105,15 @@ model Request {
   approvedBy         Staff?         @relation("approvedBy", fields: [approved_by], references: [id])
   doctor_id          String         @db.Uuid
   doctor             Staff          @relation("doctor", fields: [doctor_id], references: [id])
-  initTime           DateTime       @db.Date
-  endTime            DateTime       @db.Date
+  initTime           DateTime       @db.Timestamptz(6)
+  endTime            DateTime       @db.Timestamptz(6)
   operations_room_id String         @db.Uuid
   operationsroom     Operationsroom @relation(fields: [operations_room_id], references: [id])
   equipment          Equipment[] // Implicit many-to-many relation
   description        String
   status_id          String         @db.Uuid
   status             Status         @relation(fields: [status_id], references: [id])
-  createdAt          DateTime       @default(now()) @db.Date
-  updatedAt          DateTime       @updatedAt @db.Date
+  createdAt          DateTime       @default(now()) @db.Timestamptz(6)
+  updatedAt          DateTime       @updatedAt @db.Timestamptz(6)
   is_deleted         Boolean        @default(false)
 }
