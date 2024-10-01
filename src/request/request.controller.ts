@@ -41,7 +41,7 @@ export class RequestController {
     return this.requestService.update(id, updateRequestDto)
   }
 
-  @Patch(':id/delete')
+  @Patch('delete/:id')
   softDelete(@Param('id', ParseUUIDPipe) id: string) {
     return this.requestService.softDelete(id);
   }

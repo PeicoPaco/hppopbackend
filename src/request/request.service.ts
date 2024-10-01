@@ -26,6 +26,7 @@ export class RequestService {
     });
   }
 
+  //review 
   async findAllDoctor(id: string) {
     const doctorReq = await this.prisma.staff.findUnique({
       where: { id },
@@ -38,7 +39,6 @@ export class RequestService {
     return this.prisma.request.findMany({
       where: {doctor_id: id},
     });
-
   }
 
   async findOne(id: string) {
