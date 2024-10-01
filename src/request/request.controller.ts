@@ -27,7 +27,7 @@ export class RequestController {
 
   @Roles(Role.DOCTOR)
   @Get('doctor/:id')
-  findAllDoctor(id: string) {
+  findAllDoctor(@Param('id', ParseUUIDPipe) id: string) {
     return this.requestService.findAllDoctor(id);
   }
 

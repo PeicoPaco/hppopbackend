@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateRequestDto } from './dto/create-request.dto';
 import { UpdateRequestDto } from './dto/update-request.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -28,6 +28,11 @@ export class RequestService {
 
   //review 
   async findAllDoctor(id: string) {
+
+    if (!id) {
+      throw new BadRequestException('ID is required');
+    }
+    
     const doctorReq = await this.prisma.staff.findUnique({
       where: { id },
     });
@@ -36,6 +41,7 @@ export class RequestService {
       throw new NotFoundException('doctor id provided not found');
     };
 
+    //retunr where is_deleted: false ?
     return this.prisma.request.findMany({
       where: {doctor_id: id},
     });
