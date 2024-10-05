@@ -1,11 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ValidationPipe, ParseUUIDPipe, UseGuards } from '@nestjs/common';
-import { RequestService } from './request.service';
+import { Controller, Get, Post, Body, Patch, Param, ValidationPipe, ParseUUIDPipe, UseGuards, Req } from '@nestjs/common';
+import { Request } from 'express';
 import { CreateRequestDto } from './dto/create-request.dto';
 import { UpdateRequestDto } from './dto/update-request.dto';
 import { AuthGuard } from 'src/auth/guard/auth.guard';
 import { RolesGuard } from 'src/auth/guard/roles.guard';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { Role } from 'src/auth/enums/rol.enum';
+import { RequestService } from './request.service';
 
 
 @Controller('request')
@@ -26,9 +27,12 @@ export class RequestController {
   }
 
   @Roles(Role.DOCTOR)
-  @Get('doctor/:id')
-  findAllDoctor(@Param('id', ParseUUIDPipe) id: string) {
-    return this.requestService.findAllDoctor(id);
+  @Get('doctor')
+  findAllDoctor(@Req() req: Request) {
+    const user = req.user;
+    const doctorId = user.staffId;
+
+    return this.requestService.findAllDoctor(doctorId);
   }
 
   @Get(':id')

@@ -27,23 +27,22 @@ export class RequestService {
   }
 
   //review 
-  async findAllDoctor(id: string) {
+  async findAllDoctor(doctorId: string) {
 
-    if (!id) {
+    if (!doctorId) {
       throw new BadRequestException('ID is required');
     }
     
     const doctorReq = await this.prisma.staff.findUnique({
-      where: { id },
+      where: { id: doctorId },
     });
 
     if(!doctorReq) {
       throw new NotFoundException('doctor id provided not found');
     };
 
-    //retunr where is_deleted: false ?
     return this.prisma.request.findMany({
-      where: {doctor_id: id},
+      where: {doctor_id: doctorId, is_deleted: false },
     });
   }
 
