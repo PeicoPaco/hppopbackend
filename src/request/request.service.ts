@@ -10,13 +10,8 @@ export class RequestService {
 
   create(data: CreateRequestDto) {
 
-    const pendingApprovalStatusId = '3d75cbb7-18e7-41b6-94a1-9c40404b8888';
-
     return this.prisma.request.create({
-      data: {
-        ...data,
-        status_id: pendingApprovalStatusId,
-      },
+      data,
     });
   }
 

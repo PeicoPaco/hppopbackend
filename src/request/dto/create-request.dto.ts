@@ -24,4 +24,10 @@ export class CreateRequestDto {
     @IsString()
     description: string;
 
+    @IsNotEmpty()
+    @IsNotBlank()
+    @IsString()
+    status_id: string;
+
+
 }
