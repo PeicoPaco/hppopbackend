@@ -35,7 +35,8 @@ export class OperationController {
     return this.operationService.update(id, updateOperationDto);
   }
 
-  @Patch('delte/:id')
+  @Roles(Role.SUPERADMIN, Role.ADMIN)
+  @Patch('delete/:id')
   softDelete(@Param('id') id: string) {
     return this.operationService.softDelete(id);
   }
