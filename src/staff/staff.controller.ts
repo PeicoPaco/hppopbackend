@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, UseGuards, ValidationPipe, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, UseGuards, ValidationPipe, ParseUUIDPipe, Query } from '@nestjs/common';
 import { StaffService } from './staff.service';
 import { CreateStaffDto } from './dto/create-staff.dto';
 import { UpdateStaffDto } from './dto/update-staff.dto';
@@ -21,8 +21,11 @@ export class StaffController {
 
   @Roles(Role.SUPERADMIN, Role.ADMIN)
   @Get()
-  findAll() {
-    return this.staffService.findAll();
+  findAll(
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 5,
+  ) {
+    return this.staffService.findAll(Number(page), Number(limit));
   }
 
   @Roles(Role.SUPERADMIN, Role.ADMIN)
