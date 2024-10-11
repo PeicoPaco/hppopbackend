@@ -51,7 +51,8 @@ export class AuthService {
     const healthcareId = staff.healthcenter_id;
     const name = staff.name;
 
-    const payload = { email: user.email, role: role.name };
+    //add staff.id to playload 
+    const payload = { email: user.email, role: role.name, staffId: staff.id };
     const token = await this.jwtService.signAsync(payload);
 
 

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, UseGuards, ValidationPipe, ParseUUIDPipe } from '@nestjs/common';
 import { OperationService } from './operation.service';
 import { CreateOperationDto } from './dto/create-operation.dto';
 import { UpdateOperationDto } from './dto/update-operation.dto';
@@ -12,8 +12,9 @@ import { Roles } from 'src/auth/decorators/roles.decorator';
 export class OperationController {
   constructor(private readonly operationService: OperationService) {}
 
+  @Roles(Role.SUPERADMIN, Role.ADMIN)
   @Post()
-  create(@Body() createOperationDto: CreateOperationDto) {
+  create(@Body(ValidationPipe) createOperationDto: CreateOperationDto) {
     return this.operationService.create(createOperationDto);
   }
 
@@ -25,19 +26,19 @@ export class OperationController {
 
   @Roles(Role.SUPERADMIN, Role.ADMIN)
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.operationService.findOne(id);
   }
 
   @Roles(Role.SUPERADMIN, Role.ADMIN)
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateOperationDto: UpdateOperationDto) {
+  update(@Param('id', ParseUUIDPipe) id: string, @Body(ValidationPipe) updateOperationDto: UpdateOperationDto) {
     return this.operationService.update(id, updateOperationDto);
   }
 
   @Roles(Role.SUPERADMIN, Role.ADMIN)
   @Patch('delete/:id')
-  softDelete(@Param('id') id: string) {
+  softDelete(@Param('id', ParseUUIDPipe) id: string) {
     return this.operationService.softDelete(id);
   }
 }
