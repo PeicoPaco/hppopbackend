@@ -7,9 +7,10 @@ import { RolesModule } from './roles/roles.module';
 import { OperationsRoomModule } from './operations-room/operations-room.module';
 import { EquipmentModule } from './equipment/equipment.module';
 import { RequestModule } from './request/request.module';
+import { OperationModule } from './operation/operation.module';
 
 @Module({
-  imports: [AuthModule, UserModule, StaffModule, RolesModule, OperationsRoomModule, EquipmentModule, RequestModule],
+  imports: [AuthModule, UserModule, StaffModule, RolesModule, OperationsRoomModule, EquipmentModule, RequestModule, OperationModule],
   controllers: [],
   providers: [PrismaService],
 })
