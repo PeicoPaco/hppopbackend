@@ -14,12 +14,33 @@ export class StaffService {
     })
   }
 
-  findAll() {
-    return this.prisma.staff.findMany({
-      where: {
-        is_deleted: false,
-      },
-    });
+  //Implemented pagination
+  async findAll(page: number = 1, limit: number = 5) {
+    const skip = (page - 1) * limit;
+
+    const [data, total] = await Promise.all([
+      this.prisma.staff.findMany({
+        where: { is_deleted: false },
+        skip: skip,
+        take: limit,
+        orderBy: {
+          name: 'asc',
+        }
+      }),
+      this.prisma.staff.count({
+        where: { is_deleted: false },
+      }),
+    ]);
+
+    const totalPages = Math.ceil(total / limit);
+
+    return {
+      data,
+      total,
+      page,
+      limit,
+      totalPages,
+    };
   }
 
   async findOne(id: string) {
