@@ -23,17 +23,23 @@ export class StaffService {
         where: { is_deleted: false },
         skip: skip,
         take: limit,
+        orderBy: {
+          name: 'asc',
+        }
       }),
       this.prisma.staff.count({
         where: { is_deleted: false },
       }),
     ]);
 
+    const totalPages = Math.ceil(total / limit);
+
     return {
       data,
       total,
       page,
       limit,
+      totalPages,
     };
   }
 
